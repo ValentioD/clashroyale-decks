@@ -29,6 +29,18 @@
 
             <!-- Page Content -->
             <main>
+                @if (session('error'))
+                    <div class="bg-red-500 text-white p-4 text-center">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session('status'))
+                    <div class="bg-green-500 text-white p-4 text-center">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 {{ $slot }}
             </main>
         </div>
