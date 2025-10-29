@@ -12,11 +12,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request): ?string
     {
         // Als het geen JSON-request is (dus gewoon een webpagina)
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
             // Toon een melding dat login vereist is
             session()->flash('status', 'Maak eerst een account aan voordat je een deck kunt aanmaken.');
 
-            // ⬇️ Stuur nu naar de registratiepagina i.p.v. login
+            // Stuur nu naar de registratiepagina i.p.v. login
             return route('register');
         }
 

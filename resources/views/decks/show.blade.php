@@ -21,11 +21,30 @@
             </p>
         </div>
 
-        <div class="mt-6">
+        <div class="mt-6 flex items-center gap-4">
             <a href="{{ route('decks.index') }}"
-               class= "text-gray-700 dark:text-gray-300 hover:underline">
+               class="text-gray-700 dark:text-gray-300 hover:underline">
                 ← Terug naar overzicht
             </a>
+
+            {{-- Alleen eigenaar mag bewerken of verwijderen --}}
+            @auth
+                @if (auth()->id() === $deck->user_id)
+                    <a href="{{ route('decks.edit', $deck) }}"
+                       class="text-blue-600 dark:text-blue-400 hover:underline">
+                         Bewerken
+                    </a>
+
+                    <form method="POST" action="{{ route('decks.destroy', $deck) }}" class="mt-4"
+                          onsubmit="return confirm('Weet je zeker dat je dit deck wilt verwijderen?')">
+                        @csrf
+                        @method('DELETE')
+                        <x-primary-button class="bg-red-600 hover:bg-red-700">
+                            Verwijderen
+                        </x-primary-button>
+                    </form>
+                @endif
+            @endauth
         </div>
     </div>
 </x-app-layout>
