@@ -10,7 +10,7 @@
 
         {{-- Zoeken op character --}}
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-4">
-            <form method="GET" action="{{ route('decks.index') }}" class="flex flex-col sm:flex-row gap-3 sm:items-end">
+            <form x-ignore data-turbo="false" method="GET" action="{{ route('decks.index') }}" class="flex flex-col sm:flex-row gap-3 sm:items-end">
                 <div class="flex-1">
                     <label for="character" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         Zoek op character
@@ -22,6 +22,7 @@
                         value="{{ request('character') }}"
                         placeholder="Bijv. Hog Rider, Archer Queen…"
                         class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
+                        autocomplete="off"
                     >
                 </div>
 
@@ -71,7 +72,7 @@
                     Er zijn nog geen decks toegevoegd.
                 @endif
             </p>
-        @endforelse
+        @endforelse>
 
         <div class="mt-6 flex items-center gap-3">
             <a href="{{ route('decks.create') }}"
